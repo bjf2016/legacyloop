@@ -33,6 +33,14 @@
 - Minor editorial improvements: readability, consistency, redundancy cleanup
 - Established this version as the **official baseline for development start (MVP)**
 
+#### [2025-11-10] Session 3 — Supabase Storage Integration
+- Implemented secure audio storage per PRD § 2.3 and § 3.1.
+- Added `audio` bucket (private) with RLS enforcing `{auth.uid()}/…`.
+- Extended `entries` schema (`audio_path`, `audio_url`, `user_id`).
+- Client: new `AudioUpload` component; supports signed URL playback + 1-hour renewal.
+- Verified E2E flow (auth → upload → signed URL → DB → refresh).
+
+
 ---
 
 ## v1.2 (2025-11-08)

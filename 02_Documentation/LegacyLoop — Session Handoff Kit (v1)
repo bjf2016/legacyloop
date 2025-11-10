@@ -1,0 +1,231 @@
+# LegacyLoop — Session Handoff Kit (v1)
+
+Owner: Command Center – LegacyLoop
+Scope: Templates + scripts to standardize end‑of‑session handoffs
+
+---
+
+## 1) `command_center_state.json` (template)
+
+**Path:** `01_Project_Plan/command_center_state.json`
+
+```json
+{
+  "project": "LegacyLoop",
+  "active_prd": "v1.3",
+  "last_completed_session": 3,
+  "next_session": 4,
+  "current_goal": "Casts Dashboard + Entry List Playback",
+  "environment": "Next14",
+  "repo_path": "C:/DEV/LegacyLoop_Project/legacyloop",
+  "supabase_ref": "ahjosjqabkjgxvcwpufl",
+  "status": "handoff_to_command_center",
+  "updated_at": "2025-11-10T00:00:00Z"
+}
+```
+
+> Update `last_completed_session`, `next_session`, `current_goal`, `environment`, and `updated_at` at each handoff.
+
+---
+
+## 2) Continuation Document (markdown template)
+
+**Path:** `01_Project_Plan/Continuations/LegacyLoop_Continuation_v1.3_Session{N}_to_Session{N+1}.md`
+
+```markdown
+# LegacyLoop — Continuation (v1.3)
+**From:** Session {N} — {Title}
+**To:** Session {N+1} — {Next Title}
+**Date:** {YYYY-MM-DD}
+**Owner:** Command Center – LegacyLoop
+**Persona:** Laura L (Superhumans.life)
+
+## ✅ Completed
+- {deliverable}
+
+## ⚙️ Environment / Schema Notes
+- {migration/env/policy deltas}
+
+## 🎯 Next Session Objectives
+1. {goal}
+2. {goal}
+3. {goal}
+
+## 🪜 Next Step
+Start Command:
+> Start Session {N+1} – Step 0: Preflight checklist
+```
+
+---
+
+## 3) SprintTracker.md (append block)
+
+**Path:** `01_Project_Plan/SprintTracker.md`
+
+```markdown
+- [x] Session {N} – {Title} (Closed ✅)
+- [ ] Session {N+1} – {Next Title} (In Progress)
+```
+
+---
+
+## 4) Progress_Log.md (append block)
+
+**Path:** `01_Project_Plan/Progress_Log.md`
+
+```markdown
+### {YYYY-MM-DD} — Session {N} Completed
+**Highlights**
+- {main deliverables}
+
+**Outcome:** Ready for Session {N+1} — {Next Title}.
+```
+
+---
+
+## 5) PRD_Changelog.md (only if changed)
+
+**Path:** `00_PRD/PRD_Changelog.md`
+
+```markdown
+## v1.3.x — {Reason}
+**Status:** Administrative / Scope / Feature
+- {short summary}
+```
+
+---
+
+## 6) PowerShell — `end_session.ps1`
+
+**Path:** `01_Project_Plan/scripts/end_session.ps1`
+
+```powershell
+param(
+  [Parameter(Mandatory=$true)][int]$N,
+  [Parameter(Mandatory=$true)][int]$Next,
+  [Parameter(Mandatory=$true)][string]$Title,
+  [Parameter(Mandatory=$true)][string]$NextTitle,
+  [Parameter(Mandatory=$true)][string]$Goal,
+  [string]$Environment = "Next14",
+  [string]$RepoPath = "C:/DEV/LegacyLoop_Project/legacyloop",
+  [string]$SupabaseRef = "ahjosjqabkjgxvcwpufl"
+)
+
+$Date = (Get-Date).ToString('yyyy-MM-dd')
+$StatePath = Join-Path $RepoPath '01_Project_Plan/command_center_state.json'
+$ContDir   = Join-Path $RepoPath '01_Project_Plan/Continuations'
+$ContFile  = Join-Path $ContDir  ("LegacyLoop_Continuation_v1.3_Session{0}_to_Session{1}.md" -f $N,$Next)
+$Sprint    = Join-Path $RepoPath '01_Project_Plan/SprintTracker.md'
+$Log       = Join-Path $RepoPath '01_Project_Plan/Progress_Log.md'
+
+# Ensure directories
+New-Item -ItemType Directory -Force -Path $ContDir | Out-Null
+
+# 1) Update state JSON
+$state = @{
+  project = 'LegacyLoop'
+  active_prd = 'v1.3'
+  last_completed_session = $N
+  next_session = $Next
+  current_goal = $NextTitle
+  environment = $Environment
+  repo_path = $RepoPath
+  supabase_ref = $SupabaseRef
+  status = 'handoff_to_command_center'
+  updated_at = (Get-Date).ToString('s') + 'Z'
+}
+$state | ConvertTo-Json -Depth 5 | Set-Content -Path $StatePath -Encoding UTF8
+
+# 2) Write continuation markdown skeleton (fill bullets manually)
+$cont = @"
+# LegacyLoop — Continuation (v1.3)
+**From:** Session $N — $Title
+**To:** Session $Next — $NextTitle
+**Date:** $Date
+**Owner:** Command Center – LegacyLoop
+**Persona:** Laura L (Superhumans.life)
+
+## ✅ Completed
+-
+
+## ⚙️ Environment / Schema Notes
+-
+
+## 🎯 Next Session Objectives
+1. $Goal
+
+## 🪜 Next Step
+Start Command:
+> Start Session $Next – Step 0: Preflight checklist
+"@
+$cont | Set-Content -Path $ContFile -Encoding UTF8
+
+# 3) Append SprintTracker snippet
+$sprintLine = "- [x] Session $N – $Title (Closed ✅)`n- [ ] Session $Next – $NextTitle (In Progress)"
+Add-Content -Path $Sprint -Value $sprintLine
+
+# 4) Append Progress_Log entry
+$logEntry = @"
+### $Date — Session $N Completed
+**Highlights**
+- (fill)
+
+**Outcome:** Ready for Session $Next — $NextTitle.
+"@
+Add-Content -Path $Log -Value $logEntry
+
+# 5) Commit + push
+Set-Location $RepoPath
+ git add "01_Project_Plan/command_center_state.json" `
+         "01_Project_Plan/Continuations" `
+         "01_Project_Plan/SprintTracker.md" `
+         "01_Project_Plan/Progress_Log.md"
+ git commit -m "session: close Session $N and prep Session $Next continuation"
+ git push
+Write-Host "✅ Handoff complete for Session $N → $Next"
+```
+
+---
+
+## 7) PowerShell — `sync_for_chat.ps1`
+
+**Path:** `01_Project_Plan/scripts/sync_for_chat.ps1`
+
+```powershell
+param(
+  [string]$RepoPath = "C:/DEV/LegacyLoop_Project/legacyloop",
+  [string]$OutZip   = "$env:USERPROFILE/Desktop/LegacyLoop_Sync.zip"
+)
+Set-Location $RepoPath
+ git pull
+$paths = @('00_PRD','01_Project_Plan','02_Documentation')
+if (Test-Path $OutZip) { Remove-Item $OutZip -Force }
+Compress-Archive -Path $paths -DestinationPath $OutZip -Force
+Write-Host "✅ Created: $OutZip — upload this zip to the new session chat."
+```
+
+---
+
+## 8) Usage Cheatsheet
+
+* **Close a session:**
+
+  ```pwsh
+  pwsh -File .\01_Project_Plan\scripts\end_session.ps1 `
+    -N 3 -Next 4 -Title "Supabase Storage + Audio Uploads" `
+    -NextTitle "Casts Dashboard + Entry List Playback" `
+    -Goal "Build /casts and /casts/[id] with signed URL playback"
+  ```
+* **Prepare new session context:**
+
+  ```pwsh
+  pwsh -File .\01_Project_Plan\scripts\sync_for_chat.ps1
+  ```
+
+---
+
+## 9) Notes
+
+* Only update `PRD_Changelog.md` when scope or environment changes.
+* Keep signed URL TTL ≤ 15 minutes; never persist signed URLs in DB.
+* Ownership column naming must be consistent across tables (`owner_id` recommended).
