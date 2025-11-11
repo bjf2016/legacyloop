@@ -211,6 +211,7 @@ Write-Host "✅ Created: $OutZip — upload this zip to the new session chat."
 * **Close a session:**
 
   ```pwsh
+
   pwsh -File .\01_Project_Plan\scripts\end_session.ps1 `
     -N 3 -Next 4 -Title "Supabase Storage + Audio Uploads" `
     -NextTitle "Casts Dashboard + Entry List Playback" `
@@ -219,6 +220,7 @@ Write-Host "✅ Created: $OutZip — upload this zip to the new session chat."
 * **Prepare new session context:**
 
   ```pwsh
+  
   pwsh -File .\01_Project_Plan\scripts\sync_for_chat.ps1
   ```
 

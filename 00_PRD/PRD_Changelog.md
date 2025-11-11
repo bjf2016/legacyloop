@@ -40,6 +40,15 @@
 - Client: new `AudioUpload` component; supports signed URL playback + 1-hour renewal.
 - Verified E2E flow (auth → upload → signed URL → DB → refresh).
 
+#### [2025-11-10] Session 4 - (Casts & Playback)
+- Implemented Casts dashboard and Entry list playback
+- Signed URL refresh strategy (<= 15 minutes TTL) implemented
+- Soft delete flow to /trash/<uid>/... with DB flag
+- Orphan importer utility added; path normalizer confirmed no moves needed
+- RLS tightened for entries; storage read policy extended to uid-or-cast pattern
+- Next: add `user_id` usage across app, deprecate `owner_id`
+
+
 
 ---
 

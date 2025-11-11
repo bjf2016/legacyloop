@@ -48,3 +48,13 @@
 - Display audio durations + inline playback  
 - Enable optional deletion / recycle-bin policy  
 - Refine UI + permissions for multi-user casts
+
+## Sprint 4 — Casts Dashboard + Entries Playback (Session 4)
+- [x] /casts dashboard lists my casts with counts & last entry (excludes trashed)
+- [x] /casts/[id] entries page with inline audio player
+- [x] Signed URL auto-refresh on error/expiry (15 min TTL)
+- [x] Soft delete: moves blob to audio/<uid>/trash/<castId>/... and sets deleted_at
+- [x] “Quick Import Orphans” tool (scans storage; inserts missing DB rows)
+- [x] Path normalizer (now confirms paths are already normalized)
+- [x] RLS policies for entries insert/select; storage select policy (uid OR cast-owned)
+- [ ] Switch app queries from owner_id → user_id (planned next)
