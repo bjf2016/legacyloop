@@ -1,9 +1,9 @@
 {
   "project": "LegacyLoop",
   "active_prd": "v1.3",
-  "last_completed_session": 3,
-  "next_session": 4,
-  "current_goal": "Casts Dashboard + Entry List Playback",
+  "last_completed_session": 4,
+  "next_session": 5,
+  "current_goal": "AI Summary & Rule Linking",
   "environment": "Next14",
   "repo_path": "C:/DEV/LegacyLoop_Project/legacyloop",
   "supabase_ref": "ahjosjqabkjgxvcwpufl",

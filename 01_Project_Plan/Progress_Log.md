@@ -46,3 +46,13 @@
 
 **Outcome:** All core security and CRUD flows validated → ready for Storage integration.  
 **Next Step:** Session 3 – Supabase Storage + Audio Uploads to implement secure audio storage and signed URL playback.
+
+### 2025-11-10 — Session 4 Completed
+**Highlights**
+- Built Casts dashboard + Entries list with inline playback
+- Implemented signed URL auto-refresh (15m TTL)
+- Added soft-delete flow and trash paths
+- Orphan importer + path normalizer verified
+- RLS tightened: entries CRUD; storage read policy (uid OR cast-owned)
+
+**Outcome:** Ready for Session 5 — AI Summary & Rule Linking.

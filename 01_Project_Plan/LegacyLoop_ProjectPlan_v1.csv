@@ -2,3 +2,5 @@ Phase,Milestone,Task,Owner,Status,Due Date,Notes
 MVP,Setup,Create Supabase project,Ben,✅ Complete,2025-11-08,Configured US-West + linked Vercel
 MVP,Auth & Schema,Implement Supabase Auth + Schema + RLS,Ben,✅ Complete,2025-11-09,Verified RLS + frontend CRUD
 MVP,Storage,Enable Supabase Storage + Audio Uploads,Ben,In Progress,2025-11-10,Session 3 planned next
+MVP,Casts & Playback,Dashboard + Entries list with signed URLs,Ben,✅ Complete,2025-11-10,TTL 15m, trash flow added
+MVP,AI Summary & Rules,AI summaries + rule linking,Ben,Planned,2025-11-11,Cache server-side; add duration_ms
