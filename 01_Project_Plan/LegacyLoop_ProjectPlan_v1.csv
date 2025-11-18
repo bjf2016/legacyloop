@@ -4,3 +4,5 @@ MVP,Auth & Schema,Implement Supabase Auth + Schema + RLS,Ben,✅ Complete,2025-1
 MVP,Storage,Enable Supabase Storage + Audio Uploads,Ben,In Progress,2025-11-10,Session 3 planned next
 MVP,Casts & Playback,Dashboard + Entries list with signed URLs,Ben,✅ Complete,2025-11-10,TTL 15m, trash flow added
 MVP,AI Summary & Rules,AI summaries + rule linking,Ben,Planned,2025-11-11,Cache server-side; add duration_ms
+MVP,Session 5,AI Summary & Rule Linking,Ben,✅ Complete,2025-11-12,Next16; mock summaries; duration_ms added; RLS to re-harden in S6
+MVP,Session 6,Duration & Trash,Ben,Planned,2025-11-13,Restore flow; secure RLS; polish

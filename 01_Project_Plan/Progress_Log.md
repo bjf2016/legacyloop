@@ -1,9 +1,6 @@
 # Progress Log
 
 ## YYYY-MM-DD
-- Done:
-- Blockers:
-- Next:
 ✅ Session 2 – Supabase Auth + Schema + RLS
 
         Date: 2025-11-09
@@ -56,3 +53,35 @@
 - RLS tightened: entries CRUD; storage read policy (uid OR cast-owned)
 
 **Outcome:** Ready for Session 5 — AI Summary & Rule Linking.
+
+[[LOG-2025-11-12-S5]]
+### 2025-11-12 — Session 5 Completed
+**Highlights**
+- Added AI summary route + mock mode and inline SummaryChip UI
+- Implemented Rules linking (seed, chips, save) with Next 16 params fix
+- Added server action + client hook to capture `duration_ms` on first audio load
+- Kept signed URL TTL ≤ 15m; no signed URLs persisted
+- Dev posture: auth temporarily off for rules endpoints; entries policy allows first duration write
+
+**Outcome:** Ready for Session 6 — Duration & Trash.
+
+
+# Progress Log — LegacyLoop Project
+
+## 2025-11-16 — Completed Session 6 (Duration & Trash)
+- Verified soft-delete path update: `uid/castId/file` → `uid/trash/castId/file`
+- Verified restore path normalization and deleted_at reset
+- Added `/trash` page with entry listing + restore UI
+- Added navigation polish on /casts and /trash
+- Added title fallback in EntryRow (Option A confirmed)
+- Completed Step 4 mini: duration captured on first loadedmetadata
+- RLS re-enabled and validated for:
+  - entries
+  - casts
+  - entry_rule_links
+- Corrected entry_rule_links policy to match visibility logic
+- Verified RuleLinkPicker works under RLS
+- rules table intentionally left with RLS disabled pending `/api/rules` refactor
+- All flows retested: delete → trash → restore → link rules → summaries → duration
+
+

@@ -1,0 +1,8 @@
+-- Ensure at least one owner id exists (taken from casts)
+-- (This block is informational; runtime seeding derives user_id from casts)
+-- insert into public.rules (user_id, title, description)
+-- values
+--   ('<owner-uuid>', 'Listen First', 'Ask before advising.'),
+--   ('<owner-uuid>', 'One Story per Entry', 'Keep entries focused.'),
+--   ('<owner-uuid>', 'Assume Positive Intent', 'Lead with empathy.')
+-- on conflict (user_id, title) do nothing;

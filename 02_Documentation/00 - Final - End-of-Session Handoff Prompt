@@ -1,0 +1,32 @@
+You are at the END of Session {N}. Produce ALL standard handoff artifacts below as ready-to-copy blocks.
+Do not summarize; output each file’s exact content in a fenced block with the filename indicated.
+
+PROJECT RULES (apply):
+- Active PRD: v1.3 (Locked)
+- Persona: Laura L (Superhumans.life)
+- Alias rule: '@' maps to './src' (never use '@/src/...').
+- Signed URL TTL ≤ 15m; do NOT persist signed URLs in DB.
+
+============================================================
+1) Continuation document (new file)
+Path: 01_Project_Plan/Continuations/LegacyLoop_Continuation_v1.3_Session{N}_to_Session{N+1}.md
+Content must include these sections:
+
+# LegacyLoop — Continuation (v1.3)
+**From:** Session {N} — {This session title}
+**To:**   Session {N+1} — {Next session title}
+**Date:** {YYYY-MM-DD}
+**Owner:** Command Center – LegacyLoop
+**Persona:** Laura L (Superhumans.life)
+
+## ✅ Completed
+- {bullet list of verified deliverables}
+
+## ⚙️ Environment / Schema Notes
+- {libraries bumped, env vars added/changed, schema tables/columns added/removed, storage buckets/policies added}
+- {any Next.js version note if changed}
+
+## 🗄️ SQL Bundle (exact, copy/paste)
+### Migrations & DDL
+```sql
+-- DDL statements executed this session (create/alter/drop tables/columns, indexes)

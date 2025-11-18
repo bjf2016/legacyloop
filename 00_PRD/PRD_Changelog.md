@@ -1,5 +1,13 @@
 # PRD Changelog — LegacyLoop (FatherCast)
 
+## v1.3.3 — Session 5 (AI Summary & Rule Linking) — 2025-11-12
+**Status:** Administrative + Feature
+- Environment aligned to Next.js 16.0.1 (Turbopack)
+- Added AI summary endpoint and inline summary UI (mock/live)
+- Implemented rules linking UI and API
+- Added `entries.duration_ms` and first-play capture (server action)
+- **Dev-only:** temporarily relaxed RLS for `rules` and `entry_rule_links` to accelerate UI; to be secured in Session 6
+
 ---
 
 ## v1.3.1 — ROE Integration Update (2025-11-08)
@@ -48,7 +56,39 @@
 - RLS tightened for entries; storage read policy extended to uid-or-cast pattern
 - Next: add `user_id` usage across app, deprecate `owner_id`
 
+## 2025-11-16 — Session 6 (Duration & Trash)
+### Added
+- `/trash` page added with trashed entries list
+- Restore flow implemented (storage path reversal + deleted_at reset)
+- Trash navigation added:
+  - “View Trash” on /casts
+  - “Back to My Casts” on /trash
+- Display title fallback added to EntryRow (“Untitled Entry”)
+- Shortened audio_path display in Trash page
 
+### Updated
+- Soft-delete logic finalized:
+  - Move from `user/castId/file` → `user/trash/castId/file`
+  - On restore, remove `/trash` segment and reset deleted_at
+- RLS overhaul:
+  - entries: dev update policy removed, owner visibility confirmed
+  - entry_rule_links: RLS enabled + policy aligned with entry visibility
+  - casts: owner-based RLS verified
+  - rules: left intentionally public (RLS disabled) pending refactor
+
+### Fixed
+- RuleLinkPicker errors under RLS
+- Duration capture incorrect behavior on anonymous update (removed dev policy)
+- Missing navigation from Trash back to Casts
+
+### Deferred (v1.4+)
+- RLS re-enable on `rules` table after `/api/rules` refactor
+- Parent Reflection (v1.4 requirement)
+- Multi-child support (v1.4 requirement)
+- Summary caching + display timestamp
+
+## 2025-11-12 — Session 5 (AI Summary & Rule Linking)
+- (Existing content unchanged)
 
 ---
 
