@@ -1,8 +1,16 @@
 Phase,Milestone,Task,Owner,Status,Due Date,Notes
-MVP,Setup,Create Supabase project,Ben,✅ Complete,2025-11-08,Configured US-West + linked Vercel
-MVP,Auth & Schema,Implement Supabase Auth + Schema + RLS,Ben,✅ Complete,2025-11-09,Verified RLS + frontend CRUD
-MVP,Storage,Enable Supabase Storage + Audio Uploads,Ben,In Progress,2025-11-10,Session 3 planned next
-MVP,Casts & Playback,Dashboard + Entries list with signed URLs,Ben,✅ Complete,2025-11-10,TTL 15m, trash flow added
-MVP,AI Summary & Rules,AI summaries + rule linking,Ben,Planned,2025-11-11,Cache server-side; add duration_ms
+MVP,Session 1,Setup Create Supabase project,Ben,✅ Complete,2025-11-08,Configured US-West + linked Vercel
+MVP,Session 2,Implement Supabase Auth + Schema + RLS,Ben,✅ Complete,2025-11-09,Verified RLS + frontend CRUD
+MVP,Session 3,Storage Enable Supabase Storage + Audio Uploads,Ben,✅ Complete,2025-11-10,Session 3 planned next
+MVP,Session 4,Casts Dashboard + Entries list with signed URLs,Ben,✅ Complete,2025-11-10,TTL 15m, trash flow added
+MVP,Session 5,AI summaries + rule linking,Ben,Planned,2025-11-11,Cache server-side; add duration_ms
 MVP,Session 5,AI Summary & Rule Linking,Ben,✅ Complete,2025-11-12,Next16; mock summaries; duration_ms added; RLS to re-harden in S6
 MVP,Session 6,Duration & Trash,Ben,Planned,2025-11-13,Restore flow; secure RLS; polish
+MVP,Session 6,Duration & Trash,Ben,✅ Complete,2025-11-12,2025-11-16,v1.3,"Trash/restore flow, /trash page, duration capture, RLS hardened for entries/casts/entry_rule_links; rules left public pending /api/rules refactor"
+MVP,Session 7,UI Polish + Summary Enhancements,Ben,Planned,,,"v1.3","Improve empty states, unify toasts, enhance summary UI (timestamp + caching prep), minor navigation polish; prep work for future rules RLS"
+MVP,Session 7,UI Polish + Summary Enhancements Restore RLS Hardening + Image Prep,Ben,Completed,Rules RLS tightened; /api/rules implemented; RuleLinkPicker now uses live rules; entry_images bucket created.
+MVP,Session 8,Image Upload UI + Parent Reflection Stub,Ben,Planned,Next session: add per-entry image upload, parent reflection capture, and auth-gating polish.
+MVP,Session 8,Image Upload UI + Parent Reflection Stub,Ben,✅ Complete,2025-11-25,"Per-entry image upload (desktop/mobile), signed thumbnail preview, UPDATE RLS for entry_images, parent_reflection column added with UI + save flow, EntryRow updated"
+
+
+Future,v1.4,Entry Image Attachment,Ben,Planned,,Requires storage bucket + schema update

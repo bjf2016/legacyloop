@@ -95,11 +95,39 @@
 - RuleLinkPicker working fully under RLS
 - No schema changes this sprint
 
-## Next Sprint
-- Sprint 7  
-- **Goal:** UI Polish + Summary Enhancements
-
 ## Notes
 - Summary API still mock/live; caching added in Session 7
 - Rules table intentionally public for now (technical debt)
+
+## Sprint #: 7 
+**Dates:** 2025-11–22  → 2025-11-23
+**Goal:** Trash, Restore, RLS Hardening + Image Prep (Closed)**
+  - Rules table RLS hardened (owner-only).
+  - `/api/rules` implemented using authenticated Supabase client with Next 16 `cookies()`.
+  - RuleLinkPicker now uses live rules from the API.
+  - `entry_images` bucket created for future per-entry images.
+  - Supabase client usage cleaned up to avoid multiple GoTrueClient warnings.
+
+## Sprint #: 8
+**Dates:** 2025-11–24  → 2025-11-26
+- [x] **Session 8 – Image Upload UI + Parent Reflection Stub**
+  - Add per-entry image upload (DB + storage + UI).
+  - Add parent reflection/journaling stub after entries.
+  - Re-enable strict auth gating and run RLS regression.
+
+
+
+---
+
+## Notes
+
+- **Process rules (carry forward to every session):**
+  - Work in **tiny, sequential steps**; wait for a “done ✅” from the user before proceeding.
+  - Treat the repo and Supabase console as the **source of truth**; do not invent tables, routes, or clients.
+  - Prefer **small, testable changes** and watch the browser console + network tab for immediate feedback.
+  - When working with Supabase + Next 16:
+    - Use shared Supabase helpers only.
+    - Remember `cookies()` is async in route handlers.
+
+
 

@@ -1,12 +1,12 @@
 {
   "project": "LegacyLoop",
   "active_prd": "v1.3",
-  "last_completed_session": 6,
-  "next_session": 7,
-  "current_goal": "UI Polish + Summary Enhancements",
+  "last_completed_session": 8,
+  "next_session": 9,
+  "current_goal": "Today Page + Auth Gating Cleanup",
   "environment": "Next16",
-  "repo_path": "C:/DEV/LegacyLoop_Project/legacyloop",
+  "repo_path": "C:/DEV/LegacyLoop_Project/legacyloop-app",
   "supabase_ref": "ahjosjqabkjgxvcwpufl",
   "status": "handoff_to_command_center",
-  "updated_at": "2025-11-18T00:00:00Z"
+  "updated_at": "2025-11-25T00:00:00Z"
 }

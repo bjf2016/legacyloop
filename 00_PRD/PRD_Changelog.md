@@ -47,6 +47,14 @@
 - Refactored the Supabase browser client into a shared singleton to remove “Multiple GoTrueClient instances” warnings and stabilize auth state.
 - Prepared v1.4 image support by adding `entries.image_path` / `entries.image_caption` and creating a private `entry_images` storage bucket with per-user folder policies.
 
+## 2025-11-25 — Session 8 - Image Upload UI + Parent Reflection Stub
+- Added `parent_reflection` column to `entries`
+- Implemented per-entry image upload (desktop + mobile camera)
+- Added new storage path convention: entry_images/{userId}/{entryId}/main.ext
+- Added thumbnail preview via Supabase signed URLs (TTL ≤ 15m)
+- Added UPDATE RLS policy for `storage.objects` to allow image replacement
+- Added Parent Reflection UI + DB persistence
+- Updated EntryRow UI to incorporate image + reflection sections
 
 ---
 
