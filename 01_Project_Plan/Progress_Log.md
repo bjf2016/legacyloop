@@ -166,3 +166,40 @@
   - When something fails repeatedly (like `cookies().get`), pause and re-check docs/logs before trying new code.
   - Always prefer small, testable changes over large speculative rewrites.
 
+### 2025-12-02 — Session 9: Today Page + Mic Recording + Auth Gating
+
+**What we did:**
+- Implemented `/today` page with:
+  - “Create today’s entry” → server API → entry for current date.
+  - Links to “View all casts” and “Open current cast”.
+- Tightened auth navigation:
+  - `/` → `/today` for signed-in users, `/login` otherwise.
+  - Login redirects to `/today` after successful sign-in.
+- Added global header with logged-in user email + sign-out button.
+- Updated Entry page to:
+  - Require auth.
+  - Host `AudioUpload`.
+  - Provide “Back to Cast” navigation.
+- Upgraded `AudioUpload`:
+  - Verified file upload path + entry updates.
+  - Integrated mic recording using `MediaRecorder` and hooked it into storage + entries.
+- Tightened RLS so trash shows only the current user’s entries.
+- Cleaned up `getSignedUrl` helper to avoid noisy console errors when no audio is present.
+
+**What’s left / issues:**
+- Mic UX polish:
+  - No live timer yet; recording state could be clearer.
+  - No preview-before-upload flow.
+  - No explicit confirmation banner after upload.
+- Delete / trash:
+  - Some entries in “Test Cast” throw errors when moved to trash (likely RLS / ownership edge cases).
+- UX:
+  - After upload/record, user flow and messaging (“What now?”) still need a small polish.
+
+**Next focus (Session 10):**
+- Add mic recording timer, simple waveform, and preview-before-upload.
+- Add clear “saved to cast” confirmation.
+- Fix delete / trash errors for affected “Test Cast” entries.
+- Final clean-up for MVP.
+
+**Status:** MVP ~75–80% complete; remaining work is mic UX polish, RLS edge-case fix, and UX copy/nav refinement.

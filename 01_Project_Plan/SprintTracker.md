@@ -115,6 +115,40 @@
   - Add parent reflection/journaling stub after entries.
   - Re-enable strict auth gating and run RLS regression.
 
+# Sprint Tracker — LegacyLoop (FatherCast)
+
+## Active Sprint #: 9
+- 
+- Dates: 2025-11-25 to 2025-12-05
+- Goal:
+  - Complete `/today` page + strict auth gating.
+  - Integrate mic-based recording into Entry flow.
+  - Tighten RLS so users only see their own trash entries.
+  - Prepare groundwork for mic UX polish (timer, preview, confirmation).
+
+## Tasks
+
+### Session 8 (Done)
+- [x] Implement image upload per entry.
+- [x] Add `parent_reflection` field + UI.
+- [x] Wire image storage + signed URL thumbnail previews.
+- [x] Confirm storage RLS for entry images.
+
+### Session 9 (Done)
+- [x] Implement `/today` page and redirect flow after login.
+- [x] Ensure `/` → `/today` for authenticated users and `/login` otherwise.
+- [x] Add header with logged-in user name + sign out.
+- [x] Wire “Create today’s entry” to server API + `entry_date`.
+- [x] Integrate mic recording into `AudioUpload` and save to entries.
+- [x] Tighten entries + trash RLS so users see only their own trash.
+
+### Session 10 (Planned)
+- [ ] Add live recording timer to mic recording.
+- [ ] Add simple waveform / recording indicator.
+- [ ] Add “Play recording preview” before final upload.
+- [ ] Add clear confirmation (“Audio attached to this entry and saved to your cast”).
+- [ ] Fix remaining delete / trash errors in “Test Cast”.
+- [ ] Final pass on Today → Entry → Cast navigation and copy.
 
 
 ---

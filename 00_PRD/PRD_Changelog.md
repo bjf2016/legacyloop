@@ -56,6 +56,17 @@
 - Added Parent Reflection UI + DB persistence
 - Updated EntryRow UI to incorporate image + reflection sections
 
+## 2025-12-02 - Session 9 - v1.3.2 — Today Page & Mic Recording Implementation Notes
+**Status:** Implementation Details — No MVP Scope Change  
+
+**Summary of Updates:**
+- Documented the implementation of the `/today` page as the primary post-login landing page.
+- Clarified that daily entries are created under an existing FatherCast (e.g., “Test Cast”) with `entries.entry_date` used to represent “today”.
+- Recorded the addition of mic-based recording in the Entry page via `AudioUpload` as another input path for voice entries, consistent with existing voice entry scope in v1.3.
+- Confirmed that RLS tightening for `entries` and trash visibility remains within the original security expectations of v1.3.
+- Marked mic UX enhancements (timer, waveform, preview, confirmation) as MVP polish / early v1.4 candidates, not core MVP scope changes.
+
+
 ---
 
 ## v1.3.1 — Rules of Engagement Update (2025-11-10)
